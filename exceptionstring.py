@@ -3,7 +3,6 @@ from pathlib import Path
 import os
 
 def GetExceptionString(prev_func_num=10):
-    i=1
     func_list = []
     max_prev_func = len(stack())
     if prev_func_num > max_prev_func:
@@ -22,6 +21,8 @@ def GetExceptionString(prev_func_num=10):
     excText = ""
 
     for iText in reversed(func_list):
-        excText = excText + " -> " + iText
-        i = i + 1
+        if excText == "":
+            excText = iText
+        else:
+            excText = excText + " -> " + iText
     return excText
